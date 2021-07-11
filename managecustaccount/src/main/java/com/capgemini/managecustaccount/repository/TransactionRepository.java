@@ -9,7 +9,7 @@ import com.capgemini.managecustaccount.entity.Transaction;
 
 @Repository
 public interface TransactionRepository extends CrudRepository<Transaction,Long>{
-	List<Transaction> findByAccountNumberIn(List<Long> accountNumbers);
+	List<Transaction> findByAccount_AccountNumberIn(List<Long> accountNumbers);
 
-	List<Transaction> findByAccountNumber(Long accountNumber);
+	List<Transaction> findByAccount_AccountNumber(Long accountNumber);
 }

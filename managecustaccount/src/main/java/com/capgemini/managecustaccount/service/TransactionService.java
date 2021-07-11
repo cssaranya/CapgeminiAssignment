@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.capgemini.managecustaccount.DTO.AccountDTO;
 import com.capgemini.managecustaccount.DTO.TransactionDTO;
@@ -16,6 +17,7 @@ import com.capgemini.managecustaccount.entity.Account;
 import com.capgemini.managecustaccount.entity.Transaction;
 import com.capgemini.managecustaccount.repository.TransactionRepository;
 
+@Service
 public class TransactionService {
 Logger logger = LoggerFactory.getLogger(TransactionService.class);
 	
@@ -33,7 +35,7 @@ Logger logger = LoggerFactory.getLogger(TransactionService.class);
 		List<Account> accounts = Arrays.asList(modelMapper.map(accountDTOs, Account[].class));
 		Map<Long, List<TransactionDTO>> map = new HashMap<Long, List<TransactionDTO>>();
 		for(Account account : accounts) {
-			List<Transaction> transactions = txnRepository.findByAccountNumber(account.getAccountNumber());
+			List<Transaction> transactions = txnRepository.findByAccount_AccountNumber(account.getAccountNumber());
 			map.put(account.getAccountNumber(),Arrays.asList(modelMapper.map(transactions, TransactionDTO[].class)));
 		}
 		return map;

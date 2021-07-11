@@ -34,6 +34,10 @@ public class Transaction {
 	@JoinColumn(name="accountNumber", nullable=false)
 	private Account account;
 
+	public Transaction() {
+		super();
+	}
+	
 	public Transaction(@NotNull double amount, @NotNull String transactionType, Account account) {
 		super();
 		this.amount = amount;

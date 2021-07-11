@@ -29,7 +29,7 @@ public class Customer {
 	private String surname;
 
 	@CreationTimestamp
-	private Date createDate;
+	private Date createdDate;
 	
 	@UpdateTimestamp
 	private Date updatedDate;
@@ -40,6 +40,10 @@ public class Customer {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="customer")
 	private List<Account> accounts = new ArrayList<>();
 
+	public Customer() {
+		super();
+	}
+	
 	public Customer(Long customerId, @NotNull String name, String surname, Contact custContact) {
 		super();
 		this.customerId = customerId;
@@ -83,7 +87,7 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", name=" + name + ", surname=" + surname + ", createDate="
-				+ createDate + ", updatedDate=" + updatedDate + ", custContact=" + custContact + ", accounts="
+				+ createdDate + ", updatedDate=" + updatedDate + ", custContact=" + custContact + ", accounts="
 				+ accounts + "]";
 	}
 

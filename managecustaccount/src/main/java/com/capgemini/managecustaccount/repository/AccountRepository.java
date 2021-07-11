@@ -11,5 +11,5 @@ import org.springframework.data.repository.CrudRepository;
 
 @Repository
 public interface AccountRepository extends CrudRepository<Account,Long>{
-	Optional<List<Account>> findByCustomerIdAndAccountType(Long customerId, String accountType);
+	Optional<List<Account>> findByCustomer_CustomerIdAndAccountType(Long customerId, String accountType);
 }

@@ -1,37 +1,11 @@
-create table Customer(customerId int primary key,
-name varchar(60) not null,
-surname varchar(60),
-createdAt date,
-updatedAt date);
+insert into customer (CUSTOMER_ID, NAME, SURNAME, CREATED_DATE, UPDATED_DATE)
+values ('1', 'Saranya', 'CS', to_date('11-07-2021', 'dd-mm-yyyy'), to_date('11-07-2021', 'dd-mm-yyyy'));
 
-create table Contact(contactId int primary key,
-emailId varchar(100),
-homePhone number(20),
-workPhone number(20),
-address1 varchar(100),
-address2 varchar(100),
-city varchar(20),
-state varchar(20),
-zip  varchar(20),
-country varchar(20),
-createdAt date,
-updatedAt date,
-customerId int not null,
-FOREIGN KEY(customerId) REFERENCES Customer(customerId)
-);
+insert into customer (CUSTOMER_ID, NAME, SURNAME, CREATED_DATE, UPDATED_DATE)
+values ('2', 'Suptha', 'SC', to_date('01-01-2021', 'dd-mm-yyyy'), to_date('01-01-2021', 'dd-mm-yyyy'));
 
-create table Account(accountNumber int primary key,
-accountType varchar(60),
-balance number(20,2),
-status varchar(20),
-createdAt date,
-updatedAt date,
-customerId int not null,
-FOREIGN KEY(customerId) REFERENCES Customer(customerId));
+insert into contact (CONTACT_ID, EMAIL_ID, HOME_PHONE, WORK_PHONE, ADDRESS1, ADDRESS2, CITY, STATE, ZIP, COUNTRY, CREATED_DATE, UPDATED_DATE, CUSTOMER_ID)
+values ('1', 'chasusan6@gmail.com', '1234', '5678', 'av clays', '90', 'brussels', 'brussels', '1030', 'belgium', to_date('11-07-2021', 'dd-mm-yyyy'), to_date('11-07-2021', 'dd-mm-yyyy'), '1');
 
-create table Transaction(transactionId int primary key,
-amount number(20,2),
-transactionType varchar(20),
-Date date,
-accountNumber int not null,
-FOREIGN KEY(accountNumber) REFERENCES Account(accountNumber));
+insert into contact (CONTACT_ID, EMAIL_ID, HOME_PHONE, WORK_PHONE, ADDRESS1, ADDRESS2, CITY, STATE, ZIP, COUNTRY, CREATED_DATE, UPDATED_DATE, CUSTOMER_ID)
+values ('2', 'suptasaranya@yahoo.co.in', '91011', '121314', 'av zenome', '50', 'schaerbeek', 'brussels', '1030', 'belgium', to_date('01-01-2021', 'dd-mm-yyyy'), to_date('01-01-2021', 'dd-mm-yyyy'), '2');

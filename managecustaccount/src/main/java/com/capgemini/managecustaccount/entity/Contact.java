@@ -33,7 +33,7 @@ public class Contact {
 	private String country;
 
 	@CreationTimestamp
-	private Date createDate;
+	private Date createdDate;
 	
 	@UpdateTimestamp
 	private Date updatedDate;
@@ -41,6 +41,10 @@ public class Contact {
 	@OneToOne
 	@JoinColumn(name="customerId", nullable=false)
 	private Customer customer;
+
+	public Contact() {
+		super();
+	}
 	
 	public Contact(String emailId, String homePhone, String workPhone, String address1, String address2, String city,
 			String state, String zip, String country) {
@@ -137,11 +141,11 @@ public class Contact {
 	}
 
 	public Date getCreateDate() {
-		return createDate;
+		return createdDate;
 	}
 
 	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+		this.createdDate = createDate;
 	}
 
 	public Date getUpdatedDate() {
@@ -164,7 +168,7 @@ public class Contact {
 	public String toString() {
 		return "Contact [contactId=" + contactId + ", emailId=" + emailId + ", homePhone=" + homePhone + ", workPhone="
 				+ workPhone + ", address1=" + address1 + ", address2=" + address2 + ", city=" + city + ", state="
-				+ state + ", zip=" + zip + ", country=" + country + ", createDate=" + createDate + ", updatedDate="
+				+ state + ", zip=" + zip + ", country=" + country + ", createDate=" + createdDate + ", updatedDate="
 				+ updatedDate + ", customer=" + customer + "]";
 	}
 	

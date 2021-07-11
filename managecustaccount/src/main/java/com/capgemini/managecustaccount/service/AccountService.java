@@ -34,7 +34,7 @@ public class AccountService {
 	public List<AccountDTO> getAccountDetails(Long customerId, String accountType) {
 		ModelMapper modelMapper = new ModelMapper();
 		List<AccountDTO> accountDTOs;
-		Optional<List<Account>> optional = accRepository.findByCustomerIdAndAccountType(customerId,accountType);
+		Optional<List<Account>> optional = accRepository.findByCustomer_CustomerIdAndAccountType(customerId,accountType);
 		if(optional.isPresent()) {
 			accountDTOs= Arrays.asList(modelMapper.map(optional, AccountDTO[].class));
 		}

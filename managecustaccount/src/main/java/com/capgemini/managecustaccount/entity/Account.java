@@ -45,6 +45,10 @@ public class Account {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="account")
 	private List<Transaction> transactions = new ArrayList<>();
 
+	public Account() {
+		super();
+	}
+	
 	public Account(@NotNull String accountType, double balance, @NotNull String status, Customer customer) {
 		super();
 		this.accountType = accountType;
