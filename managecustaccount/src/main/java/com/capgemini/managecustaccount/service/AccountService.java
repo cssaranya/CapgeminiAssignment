@@ -1,5 +1,9 @@
 package com.capgemini.managecustaccount.service;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +15,7 @@ import com.capgemini.managecustaccount.DTO.CustomerDTO;
 import com.capgemini.managecustaccount.entity.Account;
 import com.capgemini.managecustaccount.entity.Customer;
 import com.capgemini.managecustaccount.repository.AccountRepository;
+import com.capgemini.managecustaccount.service.exception.AccountNotFoundException;
 
 @Service
 public class AccountService {
@@ -24,6 +29,20 @@ public class AccountService {
 		Customer customer = modelMapper.map(customerDTO, Customer.class);
 		Account account = accRepository.save(new Account(accountType,initialCredit,"Active",customer));
 		return modelMapper.map(account, AccountDTO.class);
+	}
+
+	public List<AccountDTO> getAccountDetails(Long customerId, String accountType) {
+		ModelMapper modelMapper = new ModelMapper();
+		List<AccountDTO> accountDTOs;
+		Optional<List<Account>> optional = accRepository.findByCustomerIdAndAccountType(customerId,accountType);
+		if(optional.isPresent()) {
+			accountDTOs= Arrays.asList(modelMapper.map(optional, AccountDTO[].class));
+		}
+		else {
+			throw new AccountNotFoundException(accountType+" does not exist for "+customerId);
+		}
+		
+		return accountDTOs;
 	}
 
 }

@@ -1,9 +1,16 @@
 package com.capgemini.managecustaccount.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +37,7 @@ public class CustomerAccount {
 	@Autowired
 	private TransactionService txnService;
 	
-	@PostMapping(value = "/currAccount")
+	@PostMapping(value = "currAccount")
 	public ResponseEntity<AccountDTO> createCurrAccount(Long customerId, double initialCredit) {
 		logger.info("Creating new current account for the customer "+customerId);
 		
@@ -42,5 +49,19 @@ public class CustomerAccount {
 		//Handle exception using ControllerAdvice
 		return ResponseEntity.ok().body(account);
 	}
-
+	
+	@GetMapping(value = "AccountTxn")
+	public ResponseEntity<Object> getAccountTransaction(Long customerId, String accountType) {
+		logger.info("Fetching transaction information of "+accountType+" account for "+customerId);
+		
+		CustomerDTO customer = custService.getCustomer(customerId);
+		List<AccountDTO> accounts = accService.getAccountDetails(customerId,accountType);
+		Map<Long, List<TransactionDTO>> transactions = txnService.getTxnDetails(accounts);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("Name",customer.getName());
+		map.put("Surname",customer.getSurname());
+		map.put("Transactions",transactions);
+		//Handle exception using ControllerAdvice
+		return ResponseEntity.ok().body(map);
+	}
 }
