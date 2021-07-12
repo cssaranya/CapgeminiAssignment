@@ -1,4 +1,4 @@
-# CapgeminiAssignment
+# managecustomeraccount 
 
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
 
@@ -25,27 +25,27 @@ The main requirements that guided the design and implementation of the API to op
 │   │   │               │   └── CustomerAccount.java
 │   │   │               ├── DTO
 │   │   │               │   ├── AccountDTO.java
-│	│	│				│	├──	ContactDTO.java
-│	│	│				│	├── CustomerDTO.java
-│	│	│				│	└──	TransactionDTO.java
+│   │   │               │   ├──	ContactDTO.java
+│   │   │               │   ├── CustomerDTO.java
+│   │   │               │   └──	TransactionDTO.java
 │   │   │               ├── entity
 │   │   │               │   ├── Account.java
-│	│	│				│	├──	Contact.java
-│	│	│				│	├── Customer.java
-│	│	│				│	└──	Transaction.java
+│   │   │               │   ├──	Contact.java
+│   │   │               │   ├── Customer.java
+│   │   │               │   └──	Transaction.java
 │   │   │               ├── repository
-│	│	│				│	├──	AccountRepository.java
-│	│	│				│	├── CustomerRepository.java
-│	│	│				│	└──	TransactionRepository.java
+│   │   │               │   ├──	AccountRepository.java
+│   │   │               │   ├── CustomerRepository.java
+│   │   │               │   └──	TransactionRepository.java
 │   │   │               ├── service
-│	│	│				│	├──	AccountService.java
-│	│	│				│	├── CustomerService.java
-│	│	│				│	└──	TransactionService.java
-│	│	│				└── ManageCustAccountApplication.java
+│   │   │               │   ├──	AccountService.java
+│   │   │               │   ├── CustomerService.java
+│   │   │               │   └──	TransactionService.java
+│   │   │               └── ManageCustAccountApplication.java
 │   │   ├── resources
 │   │   │   ├── static
-│	│	│	│ 	└── index.html
-│	│	│	└── templates
+│   │   │   │   └── index.html
+│   │   │   └── templates
 │   │   │       ├── application.properties
 │   │   │       └── data.sql
 │   ├── test
@@ -53,22 +53,20 @@ The main requirements that guided the design and implementation of the API to op
 │   │       └── com
 │   │           └── capgemini
 │   │               └── managecustaccount
-│   │                   ├── controller
-│   │                   │   └── CustomerAccountTest.java
-│   │                   ├── service
-│	│					│	├──	AccountServiceTest.java
-│	│					│	├── CustomerServiceTest.java
-│	│					│	└──	TransactionServiceTest.java
-│	│					└── ManageCustAccountApplication.java
-│	└──	target(contains all class files)
-│				
+│   │               ├── controller
+│   │               │   └── CustomerAccountTest.java
+│   │               ├── service
+│   │               │ 	├──	AccountServiceTest.java
+│   │               │ 	├── CustomerServiceTest.java
+│   │               │ 	└──	TransactionServiceTest.java
+│   │               └── ManageCustAccountApplication.java
+│   └──	target(contains all class files)
+│ 				
 ├── pom.xml(contains all the dependencies)
 └── README.md
-
-## Dependencies 
-
-#### Tech stack
-* Eclipse IDE with Java 8
+```
+## Tech stack
+* Eclipse IDE
 * [Spring Boot](http://spring.io/projects/spring-boot) for creating the RESTful Web Services
 * [MockMVC](https://spring.io/guides/gs/testing-web/) for testing the Web Layer
 * [Mockito](https://site.mockito.org/) for testing the Services Layer
