@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.managecustaccount.DTO.AccountDTO;
@@ -38,7 +39,7 @@ public class CustomerAccount {
 	private TransactionService txnService;
 	
 	@PostMapping(value = "currAccount")
-	public ResponseEntity<AccountDTO> createCurrAccount(Long customerId, double initialCredit) {
+	public ResponseEntity<AccountDTO> createCurrAccount(@Valid @RequestParam Long customerId, @Valid @RequestParam double initialCredit) {
 		logger.info("Creating new current account for the customer "+customerId);
 		
 		CustomerDTO customer = custService.getCustomer(customerId);
@@ -51,7 +52,7 @@ public class CustomerAccount {
 	}
 	
 	@GetMapping(value = "AccountTxn")
-	public ResponseEntity<Object> getAccountTransaction(Long customerId, String accountType) {
+	public ResponseEntity<Object> getAccountTransaction(@Valid @RequestParam Long customerId, @Valid @RequestParam String accountType) {
 		logger.info("Fetching transaction information of "+accountType+" account for "+customerId);
 		
 		CustomerDTO customer = custService.getCustomer(customerId);
