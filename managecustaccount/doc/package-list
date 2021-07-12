@@ -1,0 +1,8 @@
+com.capgemini.managecustaccount
+com.capgemini.managecustaccount.DTO
+com.capgemini.managecustaccount.controller
+com.capgemini.managecustaccount.controller.exception
+com.capgemini.managecustaccount.entity
+com.capgemini.managecustaccount.repository
+com.capgemini.managecustaccount.service
+com.capgemini.managecustaccount.service.exception
