@@ -56,11 +56,16 @@ public class CustomerAccount {
 		
 		CustomerDTO customer = custService.getCustomer(customerId);
 		List<AccountDTO> accounts = accService.getAccountDetails(customerId,accountType);
-		Map<Long, List<TransactionDTO>> transactions = txnService.getTxnDetails(accounts);
+		Map<AccountDTO, List<TransactionDTO>> transactions = txnService.getTxnDetails(accounts);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("Name",customer.getName());
 		map.put("Surname",customer.getSurname());
-		map.put("Transactions",transactions);
+		int i = 0;
+		for(Map.Entry<AccountDTO, List<TransactionDTO>> entry : transactions.entrySet()) {
+			i++;
+			map.put("Account_"+i, entry.getKey());
+			map.put("Transactions_"+i,entry.getValue());
+		}
 		//Handle exception using ControllerAdvice
 		return ResponseEntity.ok().body(map);
 	}

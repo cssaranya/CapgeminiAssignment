@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
@@ -35,6 +36,7 @@ public class Customer {
 	private Date updatedDate;
 	
 	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="contactId", nullable=false)
 	private Contact custContact;
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="customer")
@@ -44,12 +46,11 @@ public class Customer {
 		super();
 	}
 	
-	public Customer(Long customerId, @NotNull String name, String surname, Contact custContact) {
+	public Customer(@NotNull Long customerId, @NotNull String name, String surname) {
 		super();
 		this.customerId = customerId;
 		this.name = name;
 		this.surname = surname;
-		this.custContact = custContact;
 	}
 
 	public Long getCustomerId() {

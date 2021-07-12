@@ -6,16 +6,23 @@ import javax.validation.constraints.NotNull;
 
 public class TransactionDTO {
 	@NotNull
+	private Long transactionId;
+	
+	@NotNull
 	private double amount;
 	
 	@NotNull
 	private String transactionType;
 	
-	@NotNull 
 	private Date date;
 
-	public TransactionDTO(@NotNull double amount, @NotNull String transactionType, @NotNull Date date) {
+	public TransactionDTO() {
 		super();
+	}
+	
+	public TransactionDTO(@NotNull Long transactionId,  @NotNull double amount, @NotNull String transactionType, Date date) {
+		super();
+		this.transactionId = transactionId;
 		this.amount = amount;
 		this.transactionType = transactionType;
 		this.date = date;
@@ -45,9 +52,18 @@ public class TransactionDTO {
 		this.date = date;
 	}
 
+	public Long getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(Long transactionId) {
+		this.transactionId = transactionId;
+	}
+
 	@Override
 	public String toString() {
-		return "TransactionDTO [amount=" + amount + ", transactionType=" + transactionType + ", date=" + date + "]";
+		return "TransactionDTO [transactionId=" + transactionId + ", amount=" + amount + ", transactionType="
+				+ transactionType + ", date=" + date + "]";
 	}
 	
 }

@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -38,10 +36,6 @@ public class Contact {
 	@UpdateTimestamp
 	private Date updatedDate;
 	
-	@OneToOne
-	@JoinColumn(name="customerId", nullable=false)
-	private Customer customer;
-
 	public Contact() {
 		super();
 	}
@@ -156,20 +150,12 @@ public class Contact {
 		this.updatedDate = updatedDate;
 	}
 
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
 	@Override
 	public String toString() {
 		return "Contact [contactId=" + contactId + ", emailId=" + emailId + ", homePhone=" + homePhone + ", workPhone="
 				+ workPhone + ", address1=" + address1 + ", address2=" + address2 + ", city=" + city + ", state="
 				+ state + ", zip=" + zip + ", country=" + country + ", createDate=" + createdDate + ", updatedDate="
-				+ updatedDate + ", customer=" + customer + "]";
+				+ updatedDate + "]";
 	}
 	
 }

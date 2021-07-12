@@ -27,7 +27,7 @@ public class AccountService {
 	public AccountDTO createAccount(CustomerDTO customerDTO, double initialCredit, String accountType) {
 		ModelMapper modelMapper = new ModelMapper();
 		Customer customer = modelMapper.map(customerDTO, Customer.class);
-		Account account = accRepository.save(new Account(accountType,initialCredit,"Active",customer));
+		Account account = accRepository.save(new Account(null,accountType,initialCredit,"Active",customer));
 		return modelMapper.map(account, AccountDTO.class);
 	}
 
@@ -36,7 +36,8 @@ public class AccountService {
 		List<AccountDTO> accountDTOs;
 		Optional<List<Account>> optional = accRepository.findByCustomer_CustomerIdAndAccountType(customerId,accountType);
 		if(optional.isPresent()) {
-			accountDTOs= Arrays.asList(modelMapper.map(optional, AccountDTO[].class));
+			List<Account> accounts = optional.get();
+			accountDTOs= Arrays.asList(modelMapper.map(accounts, AccountDTO[].class));
 		}
 		else {
 			throw new AccountNotFoundException(accountType+" does not exist for "+customerId);

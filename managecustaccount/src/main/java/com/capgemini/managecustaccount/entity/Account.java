@@ -49,8 +49,9 @@ public class Account {
 		super();
 	}
 	
-	public Account(@NotNull String accountType, double balance, @NotNull String status, Customer customer) {
+	public Account(Long accountNumber, @NotNull String accountType, double balance, @NotNull String status, Customer customer) {
 		super();
+		this.accountNumber = accountNumber;
 		this.accountType = accountType;
 		this.balance = balance;
 		this.status = status;

@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 
 public class AccountDTO {
 	@NotNull
-	private String accountNumber;
+	private Long accountNumber;
 	
 	@NotNull
 	private String accountType;
@@ -14,7 +14,10 @@ public class AccountDTO {
 	@NotNull
 	private String status;
 
-	public AccountDTO(@NotNull String accountNumber, @NotNull String accountType, double balance,
+	public AccountDTO() {
+	}
+	
+	public AccountDTO(@NotNull Long accountNumber, @NotNull String accountType, double balance,
 			@NotNull String status) {
 		super();
 		this.accountNumber = accountNumber;
@@ -23,11 +26,11 @@ public class AccountDTO {
 		this.status = status;
 	}
 
-	public String getAccountNumber() {
+	public Long getAccountNumber() {
 		return accountNumber;
 	}
 
-	public void setAccountNumber(String accountNumber) {
+	public void setAccountNumber(Long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 

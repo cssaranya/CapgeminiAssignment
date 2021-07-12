@@ -38,8 +38,9 @@ public class Transaction {
 		super();
 	}
 	
-	public Transaction(@NotNull double amount, @NotNull String transactionType, Account account) {
+	public Transaction(Long transactionId,  @NotNull double amount, @NotNull String transactionType, Account account) {
 		super();
+		this.transactionId = transactionId;
 		this.amount = amount;
 		this.transactionType = transactionType;
 		this.account = account;

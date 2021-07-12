@@ -14,6 +14,10 @@ public class ContactDTO {
 		private String state;
 		private String zip;
 		private String country;
+
+		public ContactDTO() {
+			super();
+		}
 		
 		public ContactDTO(String emailId, String homePhone, String workPhone, String address1, String address2,
 				String city, String state, String zip, String country) {

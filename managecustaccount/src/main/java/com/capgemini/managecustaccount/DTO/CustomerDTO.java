@@ -11,6 +11,10 @@ public class CustomerDTO {
 	
 	private String surname;
 
+	public CustomerDTO() {
+		super();
+	}
+	
 	public CustomerDTO(@NotNull long customerId, @NotNull String name, String surname) {
 		super();
 		this.customerId = customerId;

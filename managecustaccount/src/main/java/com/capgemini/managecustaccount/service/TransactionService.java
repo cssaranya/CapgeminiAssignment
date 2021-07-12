@@ -26,17 +26,20 @@ Logger logger = LoggerFactory.getLogger(TransactionService.class);
 
 	public TransactionDTO initiateCredit(AccountDTO accountDTO, double initialCredit) {
 		ModelMapper modelMapper = new ModelMapper();
-		Transaction transaction = txnRepository.save(new Transaction(initialCredit,"Credit",modelMapper.map(accountDTO,Account.class)));
+		Transaction transaction = txnRepository.save(new Transaction(null,initialCredit,"Credit",modelMapper.map(accountDTO,Account.class)));
 		return modelMapper.map(transaction,TransactionDTO.class);
 	}
 
-	public Map<Long, List<TransactionDTO>> getTxnDetails(List<AccountDTO> accountDTOs) {
+	public Map<AccountDTO, List<TransactionDTO>> getTxnDetails(List<AccountDTO> accountDTOs) {
+		logger.info("Inside getTxnDetails with accountDTOs "+accountDTOs);
 		ModelMapper modelMapper = new ModelMapper();
-		List<Account> accounts = Arrays.asList(modelMapper.map(accountDTOs, Account[].class));
-		Map<Long, List<TransactionDTO>> map = new HashMap<Long, List<TransactionDTO>>();
-		for(Account account : accounts) {
-			List<Transaction> transactions = txnRepository.findByAccount_AccountNumber(account.getAccountNumber());
-			map.put(account.getAccountNumber(),Arrays.asList(modelMapper.map(transactions, TransactionDTO[].class)));
+		//List<Account> accounts = Arrays.asList(modelMapper.map(accountDTOs, Account[].class));
+		
+		Map<AccountDTO, List<TransactionDTO>> map = new HashMap<AccountDTO, List<TransactionDTO>>();
+		for(AccountDTO account : accountDTOs) {
+			Long accntNum = account.getAccountNumber();
+			List<Transaction> transactions = txnRepository.findByAccount_AccountNumber(accntNum);
+			map.put(account,Arrays.asList(modelMapper.map(transactions, TransactionDTO[].class)));
 		}
 		return map;
 	}
